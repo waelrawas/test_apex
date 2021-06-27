@@ -1,0 +1,7 @@
+- Je suis parti sur la base du batch implémenté afin de l'adapter pour correspondre au besoin. Pour faciliter la
+maintenance et l'évolution de la classe, j'ai créé des méthodes séparés pour les conformités:
+Une méthode pour "immo neuf" et une autre pour "conformité but".
+Ces methodes vont vérifier la conformité des champs et alimenter MissingInformations__c dans le cas ou la souscription n'est pas conforme.
+- à l'aide du for loop sur le scope des souscriptions non conformes, nous utiliserons un switch sur la valeur ComplianceProcess__c afin de déterminer 
+sur quelle methode faire la vérification. La mise à jour est fait en une seule fois (par batch) suite à la vérification de la conformité des souscriptions.
+- Grace à cette simplification et optimisation de code, demain il sera plus facile à ajouter des nouveaux processus de conformité.
