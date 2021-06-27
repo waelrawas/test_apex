@@ -19,8 +19,10 @@ private class SubscriptionComplianceCheckTest {
     private static final String UBIFLOW = 'Ubiflow';
     private static final String ELEMENTS_MANQUANTS = 'Éléments manquants';
     
-    @isTest
-    private static void testConformite() {
+    @testSetup 
+    //Initialization des datas dans une méthode setup
+    static void setup() {
+  
         Account compte = Account_DataFactory.createAccount('compte_1', '+33 6 00 00 00 00', '37915832200097');
         compte.Segmentation__c = SSII;
         compte.CompanyIndustry__c = 'Beauty';
@@ -69,9 +71,13 @@ private class SubscriptionComplianceCheckTest {
         subs.add(new SBQQ__Subscription__c(SBQQ__Quantity__c = 5, Status__c = ELEMENTS_MANQUANTS, ComplianceProcess__c = PUB_LOCAL, OrderNumber__c = '00215',
                                              PostalCode__c = 7500, KilometerRadius__c = '50', PrintVolume__c = 25));
         INSERT subs;
-        
+       
+    }
+
+    @isTest
+    private static void testConformite() {
+
         SubscriptionComplianceCheck batch = new SubscriptionComplianceCheck();
-        
 		Test.startTest();
 		Database.executeBatch(batch);
 		Test.stopTest();
